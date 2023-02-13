@@ -8,6 +8,10 @@ export default class ContactForm extends Component {
     name: '',
     number: '',
   };
+  static propTypes = {
+    addContact: PropTypes.func.isRequired,
+  };
+
   handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   };
@@ -53,8 +57,3 @@ export default class ContactForm extends Component {
     );
   }
 }
-
-ContactForm.propTypes = {
-  addContact: PropTypes.func.isRequired,
-};
-//чи треба тут цей проп?

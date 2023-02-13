@@ -8,7 +8,6 @@ import { GlobalStyle } from '../GlobalStyle';
 export default class App extends Component {
   state = {
     contacts: JSON.parse(localStorage.getItem('contacts')) ?? [],
-    // contacts: [],
     filter: '',
   };
   // componentDidMount() {
@@ -61,14 +60,16 @@ export default class App extends Component {
     });
   };
 
-  // getFilteredContacts = () => {пробувала винести з
-  // методу рендер сюди, нічого не вийшло - все повністю зламалось};
+  getFilteredContacts = () => {
+    const { contacts, filter } = this.state;
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().trim().includes(filter.toLowerCase())
+    );
+  };
 
   render() {
     const { contacts, filter } = this.state;
-    const filteredContacts = contacts.filter(({ name }) =>
-      name.toLowerCase().trim().includes(filter.toLowerCase())
-    );
+    const filteredContacts = this.getFilteredContacts();
 
     return (
       <div
@@ -104,4 +105,3 @@ export default class App extends Component {
     );
   }
 }
-// чи правильо тут підключені глобальні стилі?
